@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,9 +18,11 @@ class SellerFactory extends Factory
      */
     public function definition()
     {
+        $role = fake()->numberBetween(Role::ROLE_SELLER, Role::ROLE_MANAGER);
+
         return [
             'company_id' => fake()->numberBetween(1, 4),
-            'user_id' => User::factory(),
+            'user_id' => User::factory()->create(['role_id' => $role]),
         ];
     }
 }
