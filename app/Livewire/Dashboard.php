@@ -29,11 +29,14 @@ class Dashboard extends Component
         $fields = implode(',',SalesCommission::getColumns());
 
         try {
-            $this->config =  OpenAI::completions()->create([
-                'model' => 'gpt-3.5-turbo-instruct',
-                'prompt' => "Considerando a lista de campos ($fields), gere uma configuração json do Vega-lite v5 (sem campo de dados e com descrição) que atenda o seguinte pedido {$this->question}. Resposta:",
-                'max_tokens' => 1500
-            ])->choices[0]->text;
+            $result = OpenAI::chat()->create([
+                'model' => env('OPENAI_MODEL', 'gpt-4.1-mini'),
+                'messages' => [
+                    ['role' => 'user', 'content' => 'Considerando a lista de campos ($fields), gere uma configuração json do Vega-lite v5 (sem campo de dados e com descrição) que atenda o seguinte pedido {$this->question}. Resposta:'],
+                ],
+            ]);
+
+            echo $result->choices[0]->message->content;
         } catch(\Exception $e) {
 
         }
