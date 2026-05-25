@@ -20,9 +20,12 @@ class Sale extends Model
         'total_amount'
     ];
 
-    protected $casts = [
-        'status' => Status::class
-    ];
+    public function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+        ];
+    }
 
     public function client(): BelongsTo
     {
