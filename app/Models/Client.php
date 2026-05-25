@@ -18,6 +18,11 @@ class Client extends Model
         'user_id'
     ];
 
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class);
+    }
+
     public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class);
