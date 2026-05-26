@@ -10,6 +10,7 @@ class Company extends Model
 {
     use HasFactory;
 
+    public const COMPANY_COMMISSION_RATE_DEFAULT = 1;
     protected $fillable = [
         'commission_rate',
         'name'
