@@ -35,9 +35,13 @@
 
                     @if($delete)
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-white">
-
-                            {{ __('Delete') }}
-
+                            <a
+                                href=""
+                                wire:click="$parent.destroy({{ $item }})"
+                                wire:confirm="Are you sure you want to delete this item?"
+                            >
+                                {{ __('Delete') }}
+                            </a>
                         </td>
                     @endif
                 </tr>
