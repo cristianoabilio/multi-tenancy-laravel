@@ -12,6 +12,7 @@ class Edit extends Component
 
     public function mount(Seller $seller)
     {
+        $this->authorize('createOrUpdate', Seller::class);
         $this->form->setSeller($seller);
     }
 
@@ -22,6 +23,7 @@ class Edit extends Component
 
     public function save()
     {
+        $this->authorize('createOrUpdate', Seller::class);
         $this->form->save();
     }
 }
