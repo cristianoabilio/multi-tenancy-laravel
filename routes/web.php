@@ -38,8 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/sellers/create', Edit::class)->name('sellers.create');
     Route::get('/sellers/{seller}/edit', Edit::class)->name('sellers.edit');
 
-    Route::get('/impersonate/{userId}/login', [ImpersonateController::class, 'impersonate'])->name('impersonate');
-    Route::get('/impersonate/leave', [ImpersonateController::class, 'leaveImpersonate'])->name('impersonate.leave');
+    Route::get('/impersonate/{userId}/login', [ImpersonateController::class, 'impersonate'])->middleware(['can:impersonate'])->name('impersonate');
+    Route::get('/impersonate/leave', [ImpersonateController::class, 'leaveImpersonate'])->middleware(['can:leave-impersonate'])->name('impersonate.leave');
 });
 
 require __DIR__.'/auth.php';
